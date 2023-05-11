@@ -1,0 +1,45 @@
+{% extends '_layout.html' %}
+{% block body %}
+{% if user.id == profile.id %}
+<a href="/profile/{{user.id}}/edit-pfp">
+  <img src="{{ profile.pfp_url }}" alt="" height="200rem" width="200rem" style="border-radius: 50%;">
+</a>
+{% else %}
+<img src="{{ profile.pfp_url }}" alt="" height="200rem" width="200rem" style="border-radius: 50%;">
+{% endif %}
+
+<h1 class="mt-2">{{ profile.name }}</h1>
+<h2>@{{ profile.handle }}</h2>
+{% if profile.description and user.id == profile.id %}
+  <p>{{ profile.description }}</p>
+  <a href="/profile/{{user.id}}/edit-description" class="btn btn-primary" style="margin-bottom: 1rem;">Edit Description</a>
+{% endif %}
+{% if not profile.description and user.id == profile.id %}
+  <a href="/profile/{{user.id}}/add-description" class="btn btn-primary" style="margin-bottom: 1rem;">Add Description</a>
+{% endif %}
+
+<div class="strikes-wrapper">
+  Strikes: 
+  <div class="strike-circle" style="background-color: {% if profile.strikes >= 1 %}red{% else %}green{% endif %}"></div>
+  <div class="strike-circle" style="background-color: {% if profile.strikes >= 2 %}red{% else %}green{% endif %}"></div>
+  <div class="strike-circle" style="background-color: {% if profile.strikes >= 3 %}red{% else %}green{% endif %}"></div>
+</div>
+
+<div class="div-wrapper">
+  <div class="row">
+    {% for i in range(3) %}
+      <div class="col-md-4">
+        {% for post in user_posts[i::3][:column_size] %}
+          <div class="post-background">
+            <a href="{{ url_for('views.get_post_by_id', post_id=post.id) }}" style="color:#ffd700;">
+              <h2>{{ post.post_title }}</h2>
+            </a>
+            <img src="{{ post.image_url }}" alt="Post Image">
+            <p>@{{ post.author.handle }} at {{ post.timestamp.strftime('%Y-%m-%d at %H:%M:%S') }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

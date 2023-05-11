@@ -1,0 +1,13 @@
+{% extends '_layout.html' %}
+{% block body %}
+    <div class="container">
+        <h1>Edit Comment</h1>
+        <form method="post" action="{{ url_for('views.edit_comment', post_id=comment.post.id, comment_id=comment.id) }}">
+            <div class="mb-3">
+                <label for="comment_text" class="form-label">Comment Text</label>
+                <textarea class="form-control" id="comment_text" name="comment_text" rows="5" required>{{ comment.text }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

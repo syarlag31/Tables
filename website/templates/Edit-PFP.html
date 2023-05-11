@@ -1,0 +1,13 @@
+{% extends '_layout.html' %}
+{% block body %}
+    <h1>Edit Profile Picture</h1>
+    <div class="form-background">
+        <form method="post" action="{{ url_for('views.edit_profile_picture', user_id=user.id) }}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="profile_picture" class="form-label">Profile Picture:</label>
+                <input type="file" class="form-control-file" id="profile_picture" name="profile_picture" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Profile Picture</button>
+        </form>
+    </div>
+{% endblock %}

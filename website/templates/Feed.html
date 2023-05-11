@@ -1,0 +1,43 @@
+{% extends '_layout.html' %}
+{% block body %}
+  <h1>Feed</h1>
+
+  <div style="padding-bottom: 1rem;">
+    <label for="sort-select">Sort by:</label>
+    <select id="sort-select" name="sort" onchange="changeSort()">
+      <option value="select">Select</option>
+      <option value="newest">Newest</option>
+      <option value="oldest">Oldest</option>
+      <option value="most_karma">Most Karma</option>
+      <option value="least_karma">Least Karma</option>
+    </select>
+  </div>
+
+  <script>
+    function changeSort() {
+      var sortOption = document.getElementById("sort-select").value;
+      window.location.href = "/feed?sort=" + sortOption;
+    }
+  </script>
+
+  
+  <div class="div-wrapper">
+    <div class="row">
+      {% for i in range(3) %}
+        <div class="col-md-4">
+          {% for post in posts[i::3][:column_size] %}
+            <div class="post-background">
+                <a href="post/{{post.id}}" style="color:#ffd700;">
+                    <h2>{{ post.post_title }}</h2>
+                </a>
+                <img src="{{ post.image_url }}" alt="Post Image">
+                <a href="/profile/{{ post.author.handle }}" style="color:#ffd700;">@{{ post.author.handle }}</a>  
+                {{ post.timestamp.strftime('%Y-%m-%d at %H:%M:%S') }}
+            </div>
+          {% endfor %}
+        
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

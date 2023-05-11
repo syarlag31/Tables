@@ -1,0 +1,13 @@
+{% extends '_layout.html' %}
+{% block body %}
+    <div class="container">
+        <h1>Edit Post</h1>
+        <form method="post" action="{{ url_for('views.edit_post', post_id=post.id) }}">
+            <div class="mb-3">
+                <label for="post_title" class="form-label">Post Title</label>
+                <input type="text" class="form-control" id="post_title" name="post_title" value="{{ post.post_title }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+{% endblock %}

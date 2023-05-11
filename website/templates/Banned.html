@@ -1,0 +1,13 @@
+{% extends '_layout.html' %}
+{% block body %}
+<h1 class="mt-5">YOU WERE BANNED!</h1>
+<h3>Reason for Ban: </h3>
+{% if reason == 'strike' %}
+<h4>User exceeded 3 strikes!</h4>
+{% endif %}
+
+{% if reason == 'table' %}
+<h4>User tried to post a table!</h4>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends '_layout.html' %}
+{% block body %}
+<h1>Add Description</h1>
+<div class="form-background">
+    <form action="/profile/{{user.id}}/add-description" method="POST">
+        <div class="mb-3">
+            <label for="description" class="form-label">Enter Description:</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

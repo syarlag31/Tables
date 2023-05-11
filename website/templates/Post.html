@@ -1,0 +1,54 @@
+{% extends '_layout.html' %}
+{% block body %}
+
+<div class="div-wrapper" style="display: flex; flex-direction: column; align-items: center;">
+    <button class="btn btn-primary mb-2" onclick="history.back()">Back</button>
+    <div class="post-background" id="single-post">
+        {% if user.id == post.author.id %}
+        <div class="post-actions">
+            <a href="{{ url_for('views.edit_post', post_id=post.id)}}"><img src="/static/edit.svg" alt="" class="post-edit"></a>
+            <form action="{{url_for('views.delete_post', post_id=post.id)}}" method="POST">
+                <button type="submit" style="background:none; border:none; padding:0;">
+                    <img src="/static/delete.svg" alt="" class="post-delete">
+                </button>
+            </form>
+        </div>
+        {% endif %}
+        <h2>{{ post.post_title }}</h2>
+        <h4>@{{ post.author.handle }}</h4>
+        <img src="{{ post.image_url }}" alt="{{ post.post_title }}">
+        <div class="like-bar">
+            <a href="{{ url_for('views.upvote_karma', object_uuid=post.id, user_id=user.id) }}"><img src="/static/like.svg" alt=""></a>
+            <span>{{ post_karma }}</span>
+            <a href="{{ url_for('views.downvote_karma', object_uuid=post.id, user_id=user.id) }}"><img src="/static/dislike.svg" alt=""></a>
+            <a href="{{ url_for('views.new_comment', post_id=post.id)}}"><img src="/static/comment.svg" alt=""></a>
+        </div>
+
+        {% if post.comments %}
+            <div class="comments-wrapper">
+                {% for comment in post.comments %}
+                    <div class="comment-wrapper">
+                        <span>@{{ comment.author.handle }}</span>
+                        <span>{{ comment.text }}</span>
+                        <div class="comment-like-div">
+                            <a href="{{ url_for('views.upvote_karma', object_uuid=comment.id, user_id=user.id) }}"><img src="/static/like.svg" alt=""></a>
+                            <span>{{ comment_karma[comment.id] }}</span>
+                            <a href="{{ url_for('views.downvote_karma', object_uuid=comment.id, user_id=user.id) }}"><img src="/static/dislike.svg" alt=""></a>
+                            {% if user.id == comment.author.id %}
+                                <a href="{{url_for('views.edit_comment', comment_id=comment.id, post_id=post.id)}}"><img src="/static/edit.svg" alt=""></a>
+                                <form action="{{url_for('views.delete_comment', comment_id=comment.id, post_id=post.id)}}" method="POST">
+                                    <button type="submit" style="background:none; border:none; padding:0;">
+                                        <img src="/static/delete.svg" alt="">
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="comments-wrapper">No Comments Yet!</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
