@@ -16,7 +16,7 @@ views = Blueprint('views', __name__)
 
 @views.get('/')
 def landing():
-    return render_template('Landing.html', user=current_user)
+    return render_template('landing.html', user=current_user)
 
 @views.get('/banned/<string:reason>')
 def banned(reason):
