@@ -71,11 +71,11 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+model = YolosForObjectDetection.from_pretrained('hustvl/yolos-tiny')
+image_processor = YolosImageProcessor.from_pretrained("hustvl/yolos-tiny")
+
 async def run_object_detection(image_path):
     image = Image.open(image_path).convert('RGB')
-    model = YolosForObjectDetection.from_pretrained('hustvl/yolos-tiny')
-    image_processor = YolosImageProcessor.from_pretrained("hustvl/yolos-tiny")
-
     inputs = image_processor(images=image, return_tensors="pt")
     outputs = model(**inputs)
 
