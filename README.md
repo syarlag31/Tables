@@ -1,6 +1,6 @@
-## 🔥 Tables - Social Media Web Application 🔥
+## 🔥 Tables - Social Media Web Application 🔥 - 🔗[Live Link](https://tables.sathwikyarlagadda.com)
 
-Welcome to Tables! Dive into the code to find a fully functional social platform made with Flask and enhanced by YOLOS object detection. Users can create posts, comment, upvote/downvote, and so much more. But beware - the platform has a fun twist with its content management system!
+Welcome to Tables! Dive into the code to find a fully functional social platform made with Flask and enhanced by YOLOS object detection. Users can create posts, comment, upvote/downvote, and so much more. But beware - the platform has a twist with its content management system!
 
 ### 🌐 Routes Overview:
 
@@ -58,7 +58,7 @@ Welcome to Tables! Dive into the code to find a fully functional social platform
 ### 🚀 How to Run:
 
 1. Set up your virtual environment and install all required packages.
-2. Configure your database (SQLAlchemy).
+2. Configure your database (Postgres) and modify the .env.sample
 3. Set up the Flask environment.
 4. Run the application.
 
