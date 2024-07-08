@@ -1,4 +1,4 @@
-## 🔥 Tables - Social Media Web Application 🔥 - 🔗[Live Link](https://tables.sathwikyarlagadda.com)
+## 🔥 Tables - Social Media Web Application 🔥
 
 Welcome to Tables! Dive into the code to find a fully functional social platform made with Flask and enhanced by YOLOS object detection. Users can create posts, comment, upvote/downvote, and so much more. But beware - the platform has a twist with its content management system!
 
